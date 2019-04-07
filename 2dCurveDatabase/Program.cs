@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace _2dCurveDatabase
+namespace CurveDatabase2d
 {
     public class Program
     {

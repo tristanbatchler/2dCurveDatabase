@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using CurveDatabase2d.Models;
 using Microsoft.AspNetCore.Mvc;
-using _2dCurveDatabase.Models;
 
-namespace _2dCurveDatabase.Controllers
+namespace CurveDatabase2d.Controllers
 {
     public class HomeController : Controller
     {

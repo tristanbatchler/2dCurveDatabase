@@ -1,6 +1,6 @@
 using System;
 
-namespace _2dCurveDatabase.Models
+namespace CurveDatabase2d.Models
 {
     public class ErrorViewModel
     {

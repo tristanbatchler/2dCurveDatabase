@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
-    <RootNamespace>_2dCurveDatabase</RootNamespace>
+    <RootNamespace>CurveDatabase2d</RootNamespace>
   </PropertyGroup>
 
 
