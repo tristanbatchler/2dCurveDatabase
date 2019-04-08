@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CurveDatabase2d.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -9,6 +10,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using CurveDatabase2d.Models;
 
 namespace CurveDatabase2d
 {
@@ -33,6 +36,9 @@ namespace CurveDatabase2d
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddDbContext<CurveDatabase2dContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("CurveDatabase2dContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
