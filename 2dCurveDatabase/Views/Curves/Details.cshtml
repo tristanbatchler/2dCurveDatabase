@@ -13,7 +13,7 @@
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Formula)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-sm-10" id = "formula">
             @Html.DisplayFor(model => model.Formula)
         </dd>
         <dt class = "col-sm-2">
@@ -34,3 +34,64 @@
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+<div>
+    <canvas id="myChart"></canvas>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        var ctx = document.getElementById("myChart");
+
+        var formula = math.compile(document.getElementById("formula").innerHTML);
+
+        var xs = [];
+        for (var i = -100; i <= 101; i+=0.1) {
+            xs.push(i);
+        }
+
+        var data = {
+            labels: xs,
+            datasets: [
+                {
+                    label: `f(x) = ${formula}`,
+                    function: function (input) { return formula.eval({ x: input })["entries"][0] },
+                    borderColor: "rgba(75, 192, 192, 1)",
+                    data: [],
+                    fill: false
+                }
+            ]
+        };
+
+        Chart.pluginService.register({
+            beforeInit: function(chart) {
+                var data = chart.config.data;
+                for (var i = 0; i < data.datasets.length; i++) {
+                    for (var j = 0; j < data.labels.length; j++) {
+                        var fct = data.datasets[i].function,
+                            x = data.labels[j],
+                            y = fct(x);
+                        data.datasets[i].data.push(y);
+                    }
+                }
+            }
+        });
+
+        var myBarChart = new Chart(ctx,
+            {
+                type: 'line',
+                data: data,
+                options: {
+                    scales: {
+                        yAxes: [
+                            {
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }
+                        ]
+                    }
+                }
+            });
+    </script>
+}
